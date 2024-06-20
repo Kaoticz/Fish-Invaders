@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://b54c221srhvdt"]
+[gd_scene load_steps=7 format=3 uid="uid://b54c221srhvdt"]
 
+[ext_resource type="Script" path="res://Scenes/Player.gd" id="1_buy52"]
 [ext_resource type="Texture2D" uid="uid://bfdy4x2hqrpnx" path="res://Assets/Art/Player/sub1.png" id="1_p3e6c"]
 [ext_resource type="Texture2D" uid="uid://7nmh4lvikrol" path="res://Assets/Art/Player/sub2.png" id="2_ogral"]
 
@@ -25,10 +26,11 @@ height = 138.0
 size = Vector2(38.5, 18.5)
 
 [node name="Player" type="Area2D"]
+script = ExtResource("1_buy52")
 metadata/_edit_lock_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.25, 0.25)
+scale = Vector2(0.15, 0.15)
 sprite_frames = SubResource("SpriteFrames_cxwfy")
 
 [node name="HuskCollision" type="CollisionShape2D" parent="."]
