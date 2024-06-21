@@ -1,0 +1,62 @@
+[gd_scene load_steps=5 format=3 uid="uid://covjrgoe0y6ov"]
+
+[ext_resource type="Script" path="res://Scripts/Main.gd" id="1_ygxvp"]
+[ext_resource type="PackedScene" uid="uid://b54c221srhvdt" path="res://Scenes/Player.tscn" id="2_hsyp3"]
+[ext_resource type="FontFile" uid="uid://ojtu32cqpib0" path="res://Assets/Fonts/Xolonium-Regular.ttf" id="3_cfkch"]
+[ext_resource type="Script" path="res://Scenes/Hud.gd" id="3_g233j"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_ygxvp")
+
+[node name="StartTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="Player" parent="." instance=ExtResource("2_hsyp3")]
+
+[node name="Hud" type="CanvasLayer" parent="."]
+script = ExtResource("3_g233j")
+
+[node name="Message" type="Label" parent="Hud"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = -39.0
+offset_right = 240.0
+offset_bottom = 39.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_cfkch")
+theme_override_font_sizes/font_size = 64
+text = "Fish Invaders"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="StartButton" type="Button" parent="Hud"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("3_cfkch")
+theme_override_font_sizes/font_size = 64
+text = "Start"
+
+[node name="MessageTimer" type="Timer" parent="Hud"]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
+[connection signal="hit" from="Player" to="." method="game_over"]
+[connection signal="start_game" from="Hud" to="." method="new_game"]
+[connection signal="pressed" from="Hud/StartButton" to="Hud" method="_on_start_button_pressed"]
+[connection signal="timeout" from="Hud/MessageTimer" to="Hud" method="_on_message_timer_timeout"]

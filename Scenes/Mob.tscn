@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://b81xotvuas0os"]
+
+[ext_resource type="Script" path="res://Scripts/Mob.gd" id="1_q3ct8"]
+[ext_resource type="Texture2D" uid="uid://d112l5ogvnmbf" path="res://Assets/Art/Mobs/blobfish.png" id="2_6oq6d"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c53nl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_6oq6d")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n8uiq"]
+radius = 43.0
+height = 128.0
+
+[node name="Mob" type="RigidBody2D"]
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource("1_q3ct8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_c53nl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_n8uiq")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0.500004, 1.19209e-06)
+scale = Vector2(6.45, 4.5)

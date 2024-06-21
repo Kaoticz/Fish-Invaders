@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://b54c221srhvdt"]
+[gd_scene load_steps=8 format=3 uid="uid://b54c221srhvdt"]
 
-[ext_resource type="Script" path="res://Scenes/Player.gd" id="1_buy52"]
+[ext_resource type="Script" path="res://Scripts/Player.gd" id="1_buy52"]
 [ext_resource type="Texture2D" uid="uid://bfdy4x2hqrpnx" path="res://Assets/Art/Player/sub1.png" id="1_p3e6c"]
+[ext_resource type="PackedScene" uid="uid://crdmuyisuv45" path="res://Scenes/Torpedo.tscn" id="2_8yyv7"]
 [ext_resource type="Texture2D" uid="uid://7nmh4lvikrol" path="res://Assets/Art/Player/sub2.png" id="2_ogral"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_cxwfy"]
@@ -19,14 +20,15 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_00ujw"]
-radius = 23.0
-height = 138.0
+radius = 16.0
+height = 90.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ku1ot"]
-size = Vector2(38.5, 18.5)
+size = Vector2(23, 11.25)
 
 [node name="Player" type="Area2D"]
 script = ExtResource("1_buy52")
+torpedo_scene = ExtResource("2_8yyv7")
 metadata/_edit_lock_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -34,10 +36,15 @@ scale = Vector2(0.15, 0.15)
 sprite_frames = SubResource("SpriteFrames_cxwfy")
 
 [node name="HuskCollision" type="CollisionShape2D" parent="."]
-position = Vector2(8, 23)
+position = Vector2(2, 16)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_00ujw")
 
 [node name="TowerCollision" type="CollisionShape2D" parent="."]
-position = Vector2(7.25, -9.75)
+position = Vector2(4, -5.375)
 shape = SubResource("RectangleShape2D_ku1ot")
+
+[node name="TorpedoSpawnPoint" type="Marker2D" parent="."]
+position = Vector2(36, 15)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
