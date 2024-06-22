@@ -40,7 +40,8 @@ var mob_count: int = mob_positions.size()
 
 ## Start method, called when this node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	$Music.play()
+	$Music.volume_db -= 10
 
 
 ## Update method, runs on every frame.
@@ -55,6 +56,7 @@ func game_over():
 	$Hud.show_game_end("Game Over")
 	self.get_tree().call_group("mobs", "queue_free")
 	mob_count = mob_positions.size()
+	$Music.volume_db -= 10
 
 
 ## Initializes a new game session.
@@ -63,6 +65,7 @@ func new_game():
 	$Player.show()
 	$StartTimer.start()
 	$Hud.show_message("Get Ready")
+	$Music.volume_db += 10
 
 
 ## Spawns the mobs when the $MessageTimer ticks.
@@ -84,3 +87,4 @@ func _on_child_exiting_tree(node: Node) -> void:
 		mob_count = mob_positions.size()
 		$Player.stop()
 		$Hud.show_game_end("Congratulations, you won!")
+		$Music.volume_db -= 10
