@@ -1,12 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://covjrgoe0y6ov"]
+[gd_scene load_steps=6 format=3 uid="uid://covjrgoe0y6ov"]
 
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_ygxvp"]
+[ext_resource type="Texture2D" uid="uid://dxhjd6uyp4w7s" path="res://Assets/Art/Environment/background.png" id="2_4x3a0"]
 [ext_resource type="PackedScene" uid="uid://b54c221srhvdt" path="res://Scenes/Player.tscn" id="2_hsyp3"]
 [ext_resource type="FontFile" uid="uid://ojtu32cqpib0" path="res://Assets/Fonts/Xolonium-Regular.ttf" id="3_cfkch"]
 [ext_resource type="Script" path="res://Scripts/Hud.gd" id="3_g233j"]
 
 [node name="Main" type="Node" groups=["mainmenu"]]
 script = ExtResource("1_ygxvp")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1151.0
+offset_bottom = 647.0
+texture = ExtResource("2_4x3a0")
 
 [node name="StartTimer" type="Timer" parent="."]
 wait_time = 2.0
