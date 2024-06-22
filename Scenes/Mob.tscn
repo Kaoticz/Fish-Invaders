@@ -1,16 +1,34 @@
-[gd_scene load_steps=5 format=3 uid="uid://b81xotvuas0os"]
+[gd_scene load_steps=7 format=3 uid="uid://b81xotvuas0os"]
 
 [ext_resource type="Script" path="res://Scripts/Mob.gd" id="1_q3ct8"]
 [ext_resource type="Texture2D" uid="uid://d112l5ogvnmbf" path="res://Assets/Art/Mobs/blobfish.png" id="2_6oq6d"]
+[ext_resource type="Texture2D" uid="uid://b2jx618gsdm8u" path="res://Assets/Art/Mobs/anglerfish.png" id="2_cw6hw"]
+[ext_resource type="Texture2D" uid="uid://1mm0plpigliy" path="res://Assets/Art/Mobs/pufferfish.png" id="4_anw6e"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_c53nl"]
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("2_cw6hw")
+}],
+"loop": true,
+"name": &"anglerfish",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("2_6oq6d")
 }],
 "loop": true,
-"name": &"default",
+"name": &"blobfish",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_anw6e")
+}],
+"loop": true,
+"name": &"pufferfish",
 "speed": 5.0
 }]
 
@@ -25,6 +43,7 @@ script = ExtResource("1_q3ct8")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.06, 0.06)
 sprite_frames = SubResource("SpriteFrames_c53nl")
+animation = &"anglerfish"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708

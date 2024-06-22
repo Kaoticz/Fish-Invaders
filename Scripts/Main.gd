@@ -7,16 +7,31 @@ var mob_scene: PackedScene = load("res://Scenes/Mob.tscn")
 
 ## The initial position of the mobs.
 var mob_positions: Array[Vector2] = [
-	Vector2(500, 50),
-	Vector2(500, 125),
-	Vector2(500, 200),
-	Vector2(500, 275),
-	Vector2(500, 350),
-	Vector2(600, 50),
-	Vector2(600, 125),
-	Vector2(600, 200),
-	Vector2(600, 275),
-	Vector2(600, 350)
+	Vector2(800, 50),
+	Vector2(800, 125),
+	Vector2(800, 200),
+	Vector2(800, 275),
+	Vector2(800, 350),
+	Vector2(900, 50),
+	Vector2(900, 125),
+	Vector2(900, 200),
+	Vector2(900, 275),
+	Vector2(900, 350),
+	Vector2(1000, 50),
+	Vector2(1000, 125),
+	Vector2(1000, 200),
+	Vector2(1000, 275),
+	Vector2(1000, 350),
+	Vector2(1100, 50),
+	Vector2(1100, 125),
+	Vector2(1100, 200),
+	Vector2(1100, 275),
+	Vector2(1100, 350),
+	Vector2(1200, 50),
+	Vector2(1200, 125),
+	Vector2(1200, 200),
+	Vector2(1200, 275),
+	Vector2(1200, 350)
 ]
 
 ## The amount of mobs still alive.

@@ -33,7 +33,7 @@ func _on_timer_timeout() -> void:
 		self.position.y -= 30
 		movements += 1
 	else:
-		self.position.x -= 30
+		self.position.x -= 60
 		going_down = !going_down
 		movements = 0
 		$MoveTimer.wait_time *= 0.9
