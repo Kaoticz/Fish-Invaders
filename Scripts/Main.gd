@@ -53,6 +53,7 @@ func _process(_delta: float) -> void:
 ## Stops gameplay, shows game-over screen and returns to the main menu.
 func game_over():
 	$Player.stop()
+	$PlayerDeathSound.play()
 	$Hud.show_game_end("Game Over")
 	self.get_tree().call_group("mobs", "queue_free")
 	mob_count = mob_positions.size()
@@ -81,6 +82,8 @@ func _on_start_timer_timeout() -> void:
 func _on_child_exiting_tree(node: Node) -> void:
 	if !node.is_in_group("mobs") || !node.is_torpedoed:
 		return
+	
+	$MobDeathSound.play()
 	mob_count -= 1
 	
 	if mob_count == 0:

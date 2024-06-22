@@ -78,3 +78,4 @@ func shoot() -> void:
 	var projectile: Area2D = torpedo_scene.instantiate()
 	projectile.position = $TorpedoSpawnPoint.global_position
 	self.owner.add_child(projectile)
+	$TorpedoFiredSound.play()
