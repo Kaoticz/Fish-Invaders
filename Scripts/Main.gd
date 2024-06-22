@@ -45,7 +45,7 @@ func _ready() -> void:
 
 ## Update method, runs on every frame.
 ## delta: The elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 
@@ -53,7 +53,7 @@ func _process(delta: float) -> void:
 func game_over():
 	$Player.stop()
 	$Hud.show_game_end("Game Over")
-	get_tree().call_group("mobs", "queue_free")
+	self.get_tree().call_group("mobs", "queue_free")
 	mob_count = mob_positions.size()
 
 

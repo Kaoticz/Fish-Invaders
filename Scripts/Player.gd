@@ -75,6 +75,6 @@ func stop() -> void:
 
 ## Shoots a torpedo projectile.
 func shoot() -> void:
-	var projectile = torpedo_scene.instantiate()
+	var projectile: Area2D = torpedo_scene.instantiate()
 	projectile.position = $TorpedoSpawnPoint.global_position
 	self.owner.add_child(projectile)

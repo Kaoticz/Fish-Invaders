@@ -52,4 +52,7 @@ shape = SubResource("CapsuleShape2D_n8uiq")
 [node name="MoveTimer" type="Timer" parent="."]
 autostart = true
 
+[node name="LaserSpawnPoint" type="Marker2D" parent="."]
+position = Vector2(-24, 10)
+
 [connection signal="timeout" from="MoveTimer" to="." method="_on_timer_timeout"]

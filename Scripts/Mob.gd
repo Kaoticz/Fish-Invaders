@@ -5,6 +5,9 @@ extends Area2D
 ## Defines whether this mob got killed by a player torpedo or not.
 @export var is_torpedoed: bool = false
 
+## The laser scene.
+var laser_scene: PackedScene = load("res://Scenes/Laser.tscn")
+
 ## How many vertical movements the mobs have performed in a cycle.
 var movements: int = 0
 
@@ -20,7 +23,7 @@ func _ready() -> void:
 
 ## Update method, runs on every frame.
 ## delta: The elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 
@@ -37,3 +40,8 @@ func _on_timer_timeout() -> void:
 		going_down = !going_down
 		movements = 0
 		$MoveTimer.wait_time *= 0.9
+	
+	if randi() % 101 < 10:
+		var projectile: Area2D = laser_scene.instantiate()
+		projectile.position = $LaserSpawnPoint.global_position
+		self.get_tree().current_scene.add_child(projectile)

@@ -5,7 +5,7 @@
 [ext_resource type="FontFile" uid="uid://ojtu32cqpib0" path="res://Assets/Fonts/Xolonium-Regular.ttf" id="3_cfkch"]
 [ext_resource type="Script" path="res://Scripts/Hud.gd" id="3_g233j"]
 
-[node name="Main" type="Node"]
+[node name="Main" type="Node" groups=["mainmenu"]]
 script = ExtResource("1_ygxvp")
 
 [node name="StartTimer" type="Timer" parent="."]
