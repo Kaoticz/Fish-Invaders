@@ -15,22 +15,22 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n8uiq"]
-radius = 43.0
-height = 128.0
+radius = 26.0
+height = 80.0
 
-[node name="Mob" type="RigidBody2D"]
+[node name="Mob" type="Area2D" groups=["mobs"]]
 collision_mask = 0
-gravity_scale = 0.0
 script = ExtResource("1_q3ct8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.1, 0.1)
+scale = Vector2(0.06, 0.06)
 sprite_frames = SubResource("SpriteFrames_c53nl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_n8uiq")
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-position = Vector2(0.500004, 1.19209e-06)
-scale = Vector2(6.45, 4.5)
+[node name="MoveTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="MoveTimer" to="." method="_on_timer_timeout"]

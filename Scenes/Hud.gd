@@ -1,26 +1,31 @@
 extends CanvasLayer
+## This class defines the behavior of the HUD.
 
 
-## Notifies `Main` node that the button has been pressed
+## This event is triggered when the Start button is pressed.
 signal start_game
 
 
-# Called when the node enters the scene tree for the first time.
+## Start method, called when this node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	pass
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+## Update method, runs on every frame.
+## delta: The elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 
 
+## Shows a message on the HUD.
+## text: the message to be displayed.
 func show_message(text: String) -> void:
 	$Message.text = text
 	$Message.show()
 	$MessageTimer.start()
 
 
+## Stops the gameplay and returns to the main menu.
 func show_game_over() -> void:
 	show_message("Game Over")
 	# Wait until the MessageTimer has counted down.
@@ -33,10 +38,12 @@ func show_game_over() -> void:
 	$StartButton.show()
 
 
+## Triggered when the start button is pressed.
 func _on_start_button_pressed() -> void:
 	$StartButton.hide()
 	start_game.emit()
 
 
+## Hides the message after the game has started.
 func _on_message_timer_timeout() -> void:
 	$Message.hide()

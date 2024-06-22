@@ -7,7 +7,9 @@ signal hit
 
 ## Player movement speed, in pixels/sec.
 @export var speed: int = 250
-@export var torpedo_scene: PackedScene = load("res://Scenes/Torpedo.tscn")
+
+## The torpedo scene.
+var torpedo_scene: PackedScene = load("res://Scenes/Torpedo.tscn")
 
 ## The size of the game window.
 var screen_size: Vector2
@@ -18,7 +20,7 @@ var last_shot_at: float = Time.get_unix_time_from_system() - 2
 
 ## Start method, called when this node enters the scene tree for the first time.
 func _ready() -> void:
-	self.screen_size = get_viewport_rect().size
+	screen_size = get_viewport_rect().size
 	self.start(Vector2(70, screen_size.y / 2))
 	$AnimatedSprite2D.play()
 	self.hide()
@@ -37,19 +39,19 @@ func _process(delta: float) -> void:
 		last_shot_at = Time.get_unix_time_from_system()
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed
-
+	
 	# Stop the player from leaving the screen.
 	self.position += velocity * delta
 	self.position = self.position.clamp(Vector2.ZERO, screen_size)
 
 
-## Triggered by the engine when any 2D body collides with the player.
-## body: The body that collided with the player
-func _on_body_entered(body: Node2D) -> void:
-	if body.is_in_group("torpedo"):
+## Triggered by the engine when any 2D area intersects with the player.
+## area: The area that intersected with the player
+func _on_area_entered(area: Area2D) -> void:
+	if !area.is_in_group("mobs"):
 		return
 	self.stop()
-	body.hide() # Hide the projectile that hit the player
+	area.queue_free() # Despawn the projectile that hit the player
 	self.hit.emit() # Trigger the hit event
 
 
@@ -71,7 +73,8 @@ func stop() -> void:
 	$TowerCollision.set_deferred("disabled", true)
 
 
-func shoot():
+## Shoots a torpedo projectile.
+func shoot() -> void:
 	var projectile = torpedo_scene.instantiate()
 	projectile.position = $TorpedoSpawnPoint.global_position
 	self.owner.add_child(projectile)
