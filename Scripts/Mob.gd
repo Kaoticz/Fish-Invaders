@@ -2,6 +2,9 @@ extends Area2D
 ## This class defines the behavior of the mobs.
 
 
+## Defines whether this mob got killed by a player torpedo or not.
+@export var is_torpedoed: bool = false
+
 ## How many vertical movements the mobs have performed in a cycle.
 var movements: int = 0
 

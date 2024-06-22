@@ -22,7 +22,6 @@ var last_shot_at: float = Time.get_unix_time_from_system() - 2
 func _ready() -> void:
 	screen_size = get_viewport_rect().size
 	self.start(Vector2(70, screen_size.y / 2))
-	$AnimatedSprite2D.play()
 	self.hide()
 
 
@@ -60,6 +59,7 @@ func _on_area_entered(area: Area2D) -> void:
 func start(pos: Vector2) -> void:
 	self.position = pos
 	self.show()
+	$AnimatedSprite2D.play()
 	$HuskCollision.disabled = false
 	$TowerCollision.disabled = false
 

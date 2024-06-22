@@ -26,8 +26,8 @@ func show_message(text: String) -> void:
 
 
 ## Stops the gameplay and returns to the main menu.
-func show_game_over() -> void:
-	show_message("Game Over")
+func show_game_end(text: String) -> void:
+	show_message(text)
 	# Wait until the MessageTimer has counted down.
 	await $MessageTimer.timeout
 

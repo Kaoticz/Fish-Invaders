@@ -19,6 +19,9 @@ var mob_positions: Array[Vector2] = [
 	Vector2(600, 350)
 ]
 
+## The amount of mobs still alive.
+var mob_count: int = mob_positions.size()
+
 
 ## Start method, called when this node enters the scene tree for the first time.
 func _ready() -> void:
@@ -34,8 +37,9 @@ func _process(delta: float) -> void:
 ## Stops gameplay, shows game-over screen and returns to the main menu.
 func game_over():
 	$Player.stop()
-	$Hud.show_game_over()
+	$Hud.show_game_end("Game Over")
 	get_tree().call_group("mobs", "queue_free")
+	mob_count = mob_positions.size()
 
 
 ## Initializes a new game session.
@@ -52,3 +56,16 @@ func _on_start_timer_timeout() -> void:
 		var mob = mob_scene.instantiate()
 		mob.position = position
 		self.add_child(mob)
+
+
+## Counts the amount of mobs killed by the player and triggers victory once all mobs have been killed.
+## node: The game object that was removed from the renderer tree.
+func _on_child_exiting_tree(node: Node) -> void:
+	if !node.is_in_group("mobs") || !node.is_torpedoed:
+		return
+	mob_count -= 1
+	
+	if mob_count == 0:
+		mob_count = mob_positions.size()
+		$Player.stop()
+		$Hud.show_game_end("Congratulations, you won!")

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_ygxvp"]
 [ext_resource type="PackedScene" uid="uid://b54c221srhvdt" path="res://Scenes/Player.tscn" id="2_hsyp3"]
 [ext_resource type="FontFile" uid="uid://ojtu32cqpib0" path="res://Assets/Fonts/Xolonium-Regular.ttf" id="3_cfkch"]
-[ext_resource type="Script" path="res://Scenes/Hud.gd" id="3_g233j"]
+[ext_resource type="Script" path="res://Scripts/Hud.gd" id="3_g233j"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_ygxvp")
@@ -56,6 +56,7 @@ text = "Start"
 wait_time = 2.0
 one_shot = true
 
+[connection signal="child_exiting_tree" from="." to="." method="_on_child_exiting_tree"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
 [connection signal="hit" from="Player" to="." method="game_over"]
 [connection signal="start_game" from="Hud" to="." method="new_game"]
