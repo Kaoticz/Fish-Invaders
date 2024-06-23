@@ -14,15 +14,13 @@ var movements: int = 0
 ## Defines whether the mobs are moving upwards or downwards.
 var going_down: bool = true
 
-## Indicates whether this mob has started moving since spawning.
-var started_moving: bool = false
-
 ## The position the mob should lerp to.
-var target_position: Vector2 = self.position
+var target_position: Vector2
 
 
 ## Start method, called when this node enters the scene tree for the first time.
 func _ready() -> void:
+	target_position = self.position
 	var mob_types = $AnimatedSprite2D.sprite_frames.get_animation_names()
 	$AnimatedSprite2D.play(mob_types[randi() % mob_types.size()])
 
@@ -30,25 +28,22 @@ func _ready() -> void:
 ## Update method, runs on every frame.
 ## delta: The elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if started_moving:
-		self.position = self.position.lerp(target_position, delta * 3)
+	self.position = self.position.lerp(target_position, delta * 3)
 
 
 ## Moves the mobs everytime the $MoveTimer ticks.
 func _on_timer_timeout() -> void:
 	if going_down && movements < 8:
-		target_position = Vector2(self.position.x, self.position.y + 30)
+		target_position = Vector2(target_position.x, target_position.y + 30)
 		movements += 1
 	elif !going_down && movements < 8:
-		target_position = Vector2(self.position.x, self.position.y - 30)
+		target_position = Vector2(target_position.x, target_position.y - 30)
 		movements += 1
 	else:
-		target_position = Vector2(self.position.x - 60, self.position.y)
+		target_position = Vector2(target_position.x - 60, target_position.y)
 		going_down = !going_down
 		movements = 0
 		$MoveTimer.wait_time *= 0.9
-	
-	started_moving = true
 	
 	if randi() % 101 < 10:
 		var projectile: Area2D = laser_scene.instantiate()
